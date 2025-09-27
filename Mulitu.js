@@ -4,14 +4,27 @@ document.getElementById("generatorForm").addEventListener("submit", function(e) 
   const role = e.target.role.value;
   const access = e.target.access.value;
 
-  const binary = generateBinary(zone, role, access);
+  const binary = encodeMulituQR({ zone, role, access });
   drawQR(binary);
   document.getElementById("output").textContent = `Binary: ${binary}`;
+
+  // 🔗 Send to Render backend
+  fetch("https://mulituworks-github-io.onrender.com/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ binary, zone, role, access })
+  })
+  .then(res => res.text())
+  .then(msg => console.log("Backend response:", msg))
+  .catch(err => console.error("Error sending to backend:", err));
 });
 
-function generateBinary(zone, role, access) {
+function encodeMulituQR({ zone, role, access }) {
   const raw = `${zone}:${role}:${access}`;
-  return raw.split('').map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+  return raw
+    .split('')
+    .map(c => c.charCodeAt(0).toString(2).padStart(8, '0'))
+    .join('');
 }
 
 function drawQR(binary) {
