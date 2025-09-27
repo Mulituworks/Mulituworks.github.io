@@ -1,0 +1,21 @@
+body {
+  background: #111;
+  color: #0f0;
+  font-family: monospace;
+  padding: 2em;
+}
+canvas {
+  border: 1px solid #0f0;
+  margin-top: 1em;
+}
+input, button {
+  margin: 0.5em 0;
+  background: #222;
+  color: #0f0;
+  border: 1px solid #0f0;
+  padding: 0.5em;
+}
+nav a {
+  color: #0f0;
+  text-decoration: underline;
+}
