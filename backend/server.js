@@ -1,15 +1,16 @@
+require("dotenv").config();
 const express = require("express");
 const mysql = require("mysql2");
 const app = express();
 app.use(express.json());
 
-// 🔌 MySQL connection
 const db = mysql.createConnection({
-  host: "localhost",       // or your Render DB host
-  user: "root",            // or your DB username
-  password: "",            // or your DB password
-  database: "mulitu"
+  host: process.env.DB_HOST,     
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
 });
+
 
 // 🛠️ Store MulituQR payload
 app.post("/api/store", (req, res) => {
