@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MulituQR Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>MulituQR Generator</h1>
+  <form id="generatorForm">
+    <label>Zone: <input type="text" name="zone" required></label><br>
+    <label>Role: <input type="text" name="role" required></label><br>
+    <label>Access: <input type="text" name="access" required></label><br>
+    <button type="submit">Generate</button>
+  </form>
+
+  <canvas id="qrCanvas" width="300" height="300"></canvas>
+  <pre id="output">Your MulituQR will appear here.</pre>
+
+  <script src="mulitu.js"></script>
+</body>
+</html>
